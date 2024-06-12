@@ -28,6 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: | 
+            echo ${{ GITHUB_WORKSPACE }}/src/ConsoleApp1 }} 
             cd ${{ GITHUB_WORKSPACE }}/src/ConsoleApp1 }}
             dotnet restore
             dotnet build 
