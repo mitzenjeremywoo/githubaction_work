@@ -12,37 +12,37 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup dotnet ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+          source-url: https://nuget.pkg.github.com/mitzenjeremywoo/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Display dotnet version
         run: dotnet --version
-
-      - name: Setup .NET 8.x
-        uses: actions/setup-dotnet@v3
-        with:
-          # Semantic version range syntax or exact version of a dotnet version
-          dotnet-version: '8.x'
-
-      - name: Install dependencies
+    
+      - name: build dotnet
         run: | 
             cd $GITHUB_WORKSPACE
             cd src/ConsoleApp1
             dotnet restore
             dotnet build 
-      # - name: Build
-      #   run: dotnet build ${{ GITHUB_REPOSITORY }}/src/ConsoleApp1
+            dotnet build --configuration Release 
+            dotnet nuget push /src/ConsoleApp1/bin/Debug/net8.0/*.nupkg
+     
       # - name: Test with the dotnet CLI
       #   run: dotnet test
+      - name: publish artifacts 
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-results-${{ matrix.dotnet-version }}
+          path: ${{ GITHUB_WORKSPACE }}/src/ConsoleApp1/bin/Debug/net8.0/
+        # Use always() to always run this step to publish test results when there are test failures
+        #if: ${{ always() }}
 
-      # - name: Upload dotnet test results
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: dotnet-results-${{ matrix.dotnet-version }}
-      #     path: TestResults-${{ matrix.dotnet-version }}
-      #   # Use always() to always run this step to publish test results when there are test failures
-      #   if: ${{ always() }}
+      
 
       
