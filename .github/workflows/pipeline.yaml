@@ -27,11 +27,14 @@ jobs:
           dotnet-version: '6.x'
 
       - name: Install dependencies
-        run: dotnet restore
-      - name: Build
-        run: dotnet build
-      - name: Test with the dotnet CLI
-        run: dotnet test
+        run: | 
+            cd ${{ GITHUB_WORKSPACE }}/src/ConsoleApp1 
+            dotnet restore
+            dotnet build 
+      # - name: Build
+      #   run: dotnet build ${{ GITHUB_REPOSITORY }}/src/ConsoleApp1
+      # - name: Test with the dotnet CLI
+      #   run: dotnet test
 
       # - name: Upload dotnet test results
       #   uses: actions/upload-artifact@v4
