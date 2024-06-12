@@ -35,11 +35,11 @@ jobs:
      
       # - name: Test with the dotnet CLI
       #   run: dotnet test
-      - name: publish artifacts 
+      - name: upload artifacts 
         uses: actions/upload-artifact@v4
         with:
-          name: dotnet-results-${{ matrix.dotnet-version }}
-          path: ${{ GITHUB_WORKSPACE }}/src/ConsoleApp1/bin/Debug/net8.0/
+          name: artifact-${{ matrix.dotnet-version }}
+          path: ${{ github.workspace  }}/src/ConsoleApp1/bin/Debug/net8.0/
         # Use always() to always run this step to publish test results when there are test failures
         #if: ${{ always() }}
 
