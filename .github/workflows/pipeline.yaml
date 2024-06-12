@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ matrix.dotnet-version }}
-          path: ${{ github.workspace  }}/src/ConsoleApp1/bin/Debug/net8.0/
+          path: ${{ github.workspace  }}/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
         # Use always() to always run this step to publish test results when there are test failures
         #if: ${{ always() }}
 
