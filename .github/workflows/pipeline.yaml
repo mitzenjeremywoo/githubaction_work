@@ -32,9 +32,10 @@ jobs:
             dotnet build 
             dotnet build --configuration Release 
             dotnet pack -c Release 
+
             ls -al $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
             
-            dotnet nuget push $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/*.nupkg
+            dotnet nuget push $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/*.nupkg
      
       # - name: Test with the dotnet CLI
       #   run: dotnet test
