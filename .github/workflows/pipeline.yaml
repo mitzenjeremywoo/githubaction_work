@@ -31,7 +31,7 @@ jobs:
             dotnet restore
             dotnet build 
             dotnet build --configuration Release 
-            dotnet nuget push /src/ConsoleApp1/bin/Debug/net8.0/*.nupkg
+            #dotnet nuget push /src/ConsoleApp1/bin/Debug/net8.0/*.nupkg
      
       # - name: Test with the dotnet CLI
       #   run: dotnet test
