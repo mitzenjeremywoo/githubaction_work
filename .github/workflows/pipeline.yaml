@@ -32,14 +32,14 @@ jobs:
     
       - name: build dotnet
         run: | 
-            cd $GITHUB_WORKSPACE
+            cd $${{ github.workspace }}
             cd src/ConsoleApp1
             dotnet restore
             dotnet build 
             dotnet build --configuration Release 
             dotnet pack -c Release /p:Version=1.0.${{ github.run_number }}
 
-            ls -al $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
+            ls -al $${{ github.workspace }}/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
             
             dotnet nuget push $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/*.nupkg
      
