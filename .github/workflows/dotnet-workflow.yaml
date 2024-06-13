@@ -16,6 +16,6 @@ jobs:
 
       - name: build dotnet
         run: | 
-            echo ${{ inputs.message }}"
-            echo  ${{ inputs.message2 }}"
+            echo ${{ inputs.message }}
+            echo ${{ inputs.message2 }}
 
