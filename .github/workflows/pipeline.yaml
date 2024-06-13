@@ -37,7 +37,7 @@ jobs:
             dotnet restore
             dotnet build 
             dotnet build --configuration Release 
-            dotnet pack -c Release /p:Version=1.0.$github.run_number
+            dotnet pack -c Release /p:Version=1.0.${{ github.run_number }}
 
             ls -al $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
             
