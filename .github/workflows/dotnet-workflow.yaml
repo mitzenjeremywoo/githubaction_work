@@ -16,6 +16,6 @@ jobs:
 
       - name: build dotnet
         run: | 
-            echo ${{ github.event.inputs.message }}"
-            echo  ${{ github.event.inputs.name }}"
+            echo ${{ inputs.message }}"
+            echo  ${{ inputs.message2 }}"
 
