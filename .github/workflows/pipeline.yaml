@@ -19,8 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
+     
       - name: Setup dotnet ${{ matrix.dotnet-version }}
+        if: success()
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
@@ -29,9 +30,11 @@ jobs:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Display dotnet version
+        if: success()
         run: dotnet --version
     
       - name: build dotnet
+        if: success()
         run: | 
             cd ${{ github.workspace }}
             cd src/ConsoleApp1
@@ -47,6 +50,7 @@ jobs:
       # - name: Test with the dotnet CLI
       #   run: dotnet test
       - name: upload artifacts 
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ matrix.dotnet-version }}
