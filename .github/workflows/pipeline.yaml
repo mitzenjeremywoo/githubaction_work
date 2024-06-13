@@ -10,6 +10,7 @@ jobs:
        message2: "message2"
        
   build:
+    needs: prerequisite
 
     runs-on: ubuntu-latest
     strategy:
