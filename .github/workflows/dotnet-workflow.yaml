@@ -6,8 +6,6 @@ on:
         required: true
       message2:
         type: string
-
-
 jobs:
   build:
     runs-on: ubuntu-latest

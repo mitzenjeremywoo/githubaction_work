@@ -3,6 +3,7 @@ name: dotnet package
 on: [push]
 
 jobs:
+  
   prerequisite:
     uses: mitzenjeremywoo/githubaction_work/.github/workflows/dotnet-workflow.yaml@feat/template-resable-workflow
     with: 
@@ -10,6 +11,10 @@ jobs:
        message2: "message2"
        
   build:
+   
+    env:
+      MyEnvVar: Hello 
+
     needs: prerequisite
 
     runs-on: ubuntu-latest
@@ -36,6 +41,8 @@ jobs:
       - name: build dotnet
         if: success()
         run: | 
+            echo $MyEnvVar
+            
             cd ${{ github.workspace }}
             cd src/ConsoleApp1
             dotnet restore
