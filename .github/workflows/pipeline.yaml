@@ -3,6 +3,12 @@ name: dotnet package
 on: [push]
 
 jobs:
+  prerequisite:
+    uses: mitzenjeremywoo/githubaction_work/.github/workflows/dotnet-workflow.yaml@feat/template-resable-workflow
+    with: 
+       message: "message1"
+       message2: "message2"
+       
   build:
 
     runs-on: ubuntu-latest

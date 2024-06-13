@@ -1,0 +1,25 @@
+on:
+workflow_call:
+   inputs:
+      # name:
+      #   type: choice
+      #   description: Who to greet
+      #   options: 
+      #   - monalisa
+      #   - cschleiden
+      message:
+        required: true
+      message2:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: build dotnet
+        run: | 
+            echo ${{ github.event.inputs.message }}"
+            echo  ${{ github.event.inputs.name }}"
+
