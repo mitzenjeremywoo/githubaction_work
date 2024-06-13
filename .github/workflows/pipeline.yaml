@@ -14,6 +14,8 @@ jobs:
    
     env:
       MyEnvVar: Hello 
+      ACTIONS_STEP_DEBUG : true
+      ACTIONS_RUNNER_DEBUG : true
 
     needs: prerequisite
 
@@ -42,7 +44,7 @@ jobs:
         if: success()
         run: | 
             echo $MyEnvVar
-            
+
             cd ${{ github.workspace }}
             cd src/ConsoleApp1
             dotnet restore
