@@ -9,8 +9,7 @@ jobs:
     uses: mitzenjeremywoo/githubaction_template/.github/workflows/build.yaml@main
     with: 
        targetProjectPath: src/ConsoleApp1
-       publishNuget: true
-       
+       publishNuget: true       
   # build:
    
   #   env:
