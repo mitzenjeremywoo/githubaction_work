@@ -5,7 +5,7 @@ on: [push]
 jobs:
   
   build:
-    uses: mitzenjeremywoo/githubaction_work/.github/workflows/build.yaml@main
+    uses: mitzenjeremywoo/githubaction_template/.github/workflows/build.yaml@main
     with: 
        targetProjectPath: src/ConsoleApp1
        publishNuget: true
