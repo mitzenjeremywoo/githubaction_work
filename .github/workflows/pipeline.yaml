@@ -1,6 +1,7 @@
 name: dotnet-build
 
-on: [push]
+
+on: [push, workflow_dispatch]
 
 jobs:
   
