@@ -1,71 +1,71 @@
-name: dotnet package
+name: dotnet-build
 
 on: [push]
 
 jobs:
   
-  prerequisite:
-    uses: mitzenjeremywoo/githubaction_work/.github/workflows/dotnet-workflow.yaml@feat/template-resable-workflow
-    with: 
-       message: "message1"
-       message2: "message2"
-       
   build:
+    uses: mitzenjeremywoo/githubaction_work/.github/workflows/dotnet/build.yaml@main
+    with: 
+       targetProjectPath: src/ConsoleApp1
+       publishNuget: true
+       
+  # build:
    
-    env:
-      MyEnvVar: Hello 
-      ACTIONS_STEP_DEBUG : true
-      ACTIONS_RUNNER_DEBUG : true
+  #   env:
+  #     MyEnvVar: Hello 
+  #     ACTIONS_STEP_DEBUG : true
+  #     ACTIONS_RUNNER_DEBUG : true
 
-    needs: prerequisite
+  #   needs: prerequisite
 
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: ['8.0.x']
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       dotnet-version: ['8.0.x']
 
-    steps:
-      - uses: actions/checkout@v4
+  #   steps:
+  #     - uses: actions/checkout@v4
      
-      - name: Setup dotnet ${{ matrix.dotnet-version }}
-        if: success()
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-          source-url: https://nuget.pkg.github.com/mitzenjeremywoo/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  #     - name: Setup dotnet ${{ matrix.dotnet-version }}
+  #       if: success()
+  #       uses: actions/setup-dotnet@v3
+  #       with:
+  #         dotnet-version: ${{ matrix.dotnet-version }}
+  #         source-url: https://nuget.pkg.github.com/mitzenjeremywoo/index.json
+  #       env:
+  #         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Display dotnet version
-        if: success()
-        run: dotnet --version
+  #     - name: Display dotnet version
+  #       if: success()
+  #       run: dotnet --version
     
-      - name: build dotnet
-        if: success()
-        run: | 
-            echo $MyEnvVar
+  #     - name: build dotnet
+  #       if: success()
+  #       run: | 
+  #           echo $MyEnvVar
 
-            cd ${{ github.workspace }}
-            cd src/ConsoleApp1
-            dotnet restore
-            dotnet build 
-            dotnet build --configuration Release 
-            dotnet pack -c Release /p:Version=1.0.${{ github.run_number }}
+  #           cd ${{ github.workspace }}
+  #           cd src/ConsoleApp1
+  #           dotnet restore
+  #           dotnet build 
+  #           dotnet build --configuration Release 
+  #           dotnet pack -c Release /p:Version=1.0.${{ github.run_number }}
 
-            ls -al ${{ github.workspace }}/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
+  #           ls -al ${{ github.workspace }}/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
             
-            dotnet nuget push $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/*.nupkg
+  #           dotnet nuget push $GITHUB_WORKSPACE/src/ConsoleApp1/ConsoleApp1/bin/Release/*.nupkg
      
-      # - name: Test with the dotnet CLI
-      #   run: dotnet test
-      - name: upload artifacts 
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact-${{ matrix.dotnet-version }}
-          path: ${{ github.workspace  }}/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
-        # Use always() to always run this step to publish test results when there are test failures
-        #if: ${{ always() }}
+  #     # - name: Test with the dotnet CLI
+  #     #   run: dotnet test
+  #     - name: upload artifacts 
+  #       if: success()
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: artifact-${{ matrix.dotnet-version }}
+  #         path: ${{ github.workspace  }}/src/ConsoleApp1/ConsoleApp1/bin/Release/net8.0/
+  #       # Use always() to always run this step to publish test results when there are test failures
+  #       #if: ${{ always() }}
 
       
 
