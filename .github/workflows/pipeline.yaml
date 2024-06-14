@@ -6,10 +6,10 @@ jobs:
   
   build:
     #    uses: mitzenjeremywoo/githubaction_work/.github/workflows/dotnet-workflow.yaml@feat/template-resable-workflow
-    uses: mitzenjeremywoo/githubaction_template/.github/workflows/build.yaml@main
+    uses: mitzenjeremywoo/githubaction_template/.github/workflows/dotnet/build.yaml@main
     with: 
        targetProjectPath: src/ConsoleApp1
-       publishNuget: true       
+       publishNuget: true
   # build:
    
   #   env:
