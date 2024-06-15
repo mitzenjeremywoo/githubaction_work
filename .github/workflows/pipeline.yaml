@@ -5,12 +5,32 @@ on: [push, workflow_dispatch]
 jobs:
   
   build:
+    runs-on: ubuntu-latest
+    outputs:
+      example_output: ${{ steps.example_step.outputs.example }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set example output
+        id: example_step
+        run: echo "::set-output name=example::Hello from job1"
+
+  job2:
+    if: ${{ github.event.inputs.run-job2 == 'true' }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
     #    uses: mitzenjeremywoo/githubaction_work/.github/workflows/dotnet-workflow.yaml@feat/template-resable-workflow
-    uses: mitzenjeremywoo/dotnet-action-template/.github/workflows/build.yaml@main
-    with: 
-       targetProjectPath: src/ConsoleApp1
-       dockerContext: src/ConsoleApp1/ConsoleApp1
-       publishNuget: true
+    # uses: mitzenjeremywoo/dotnet-action-template/.github/workflows/build.yaml@main
+    # with: 
+    #    targetProjectPath: src/ConsoleApp1
+    #    dockerContext: src/ConsoleApp1/ConsoleApp1
+    #    publishNuget: true
            
   # containerize:
   #   uses: mitzenjeremywoo/dotnet-action-template/.github/workflows/containerizedapp.yaml@main
