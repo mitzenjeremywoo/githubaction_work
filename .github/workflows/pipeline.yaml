@@ -11,10 +11,10 @@ jobs:
        targetProjectPath: src/ConsoleApp1
        publishNuget: true
            
-  containerize:
-    uses: mitzenjeremywoo/dotnet-action-template/.github/workflows/containerizedapp.yaml@main
-    with: 
-       dockerContext: src/ConsoleApp1/ConsoleApp1
+  # containerize:
+  #   uses: mitzenjeremywoo/dotnet-action-template/.github/workflows/containerizedapp.yaml@main
+  #   with: 
+  #      dockerContext: src/ConsoleApp1/ConsoleApp1
 
   #   env:
   #     REGISTRY: ghcr.io
