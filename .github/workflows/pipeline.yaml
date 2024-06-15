@@ -14,10 +14,10 @@ jobs:
 
       - name: Set example output
         id: example_step
-        run: echo "::set-output name=example::RunIt"
+        run: echo "::set-output name=example::true"
 
   job2:
-    if: ${{ needs.job1.outputs.example_output == 'RunIt' }}
+    if: ${{ needs.job1.outputs.example_output == true }}
     runs-on: ubuntu-latest
     needs: job1
     steps:
