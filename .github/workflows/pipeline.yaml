@@ -17,6 +17,7 @@ jobs:
         uses: ./.github/workflows/my-composite-action        
         with:
           my-input: "Custom value"
+        
 
       - name: Set example output
         id: example_step
