@@ -13,7 +13,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use composite action
-        uses: ./.github/actions/my-composite-action
+        #uses: ./.github/workflows/actions/my-composite-action
+        uses: ./.github/workflows/my-composite-action        
         with:
           my-input: "Custom value"
 
