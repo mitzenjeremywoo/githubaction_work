@@ -1,0 +1,21 @@
+name: "My Composite Action"
+description: "An example composite action"
+inputs:
+  my-input:
+    description: "An input parameter"
+    required: true
+    default: "default value"
+outputs:
+  my-output:
+    description: "An output parameter"
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run a script
+      run: echo "Hello, ${{ inputs.my-input }}"
+    
+    - name: Set an output
+      run: echo "::set-output name=my-output::some-value"
